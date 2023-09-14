@@ -1,5 +1,5 @@
 <template>
-  <li class="todo-item" :class="{'todo-item--done': todo.completed}">
+  <li class="todo-item" :class="{'todo-item--done': todo.completed}" @click="toggleTodo">
     <div class="todo-item__status">
       <i class="bi bi-check2"></i>
     </div>
@@ -20,6 +20,14 @@ export default defineComponent({
       type: Object as PropType<Todo>,
       required: true
     }
+  },
+  methods: {
+    toggleTodo() {
+      this.$emit('toggleTodo', this.todo.id)
+    }
+  },
+  emits: {
+    toggleTodo: (id: number) => Number.isInteger(id)
   }
 })
 </script>
